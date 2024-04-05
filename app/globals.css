@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 3개로 나누는데.. base는 기본 엘리먼트단위
+유틸리티는 새로운 클래스이름, 유틸리티는 추상화.. 기본 껍데기를 가져와서 나중에 그 위에 더 넣고 더넣고 하는느낌?
+*/
+@layer base {
+  a {
+    @apply text-blue-400;
+  }
+}
+
+@layer components {
+  .text-bigger-hello {
+    @apply text-3xl font-semibold;
+  }
+}
+
+@layer utilities {
+  .btn {
+    @apply size-12 odd:bg-red-400 first:mb-[50px] 
+    active:animate-ping rounded-Kwang border-2 border-black group-hover:bg-yellow-400;
+  }
+}
