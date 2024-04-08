@@ -2,12 +2,12 @@
 
 import { useFormStatus } from "react-dom";
 
-interface FormButtonProps {
+interface ButtonProps {
   text: string;
 }
 
-export default function FormButton({ text }: FormButtonProps) {
-  const { pending } = useFormStatus();
+export default function Button({ text }: ButtonProps) {
+  const { pending } = useFormStatus(); //부모인 form의 useFormState 항상 체크한다!
   return (
     <button
       disabled={pending}
