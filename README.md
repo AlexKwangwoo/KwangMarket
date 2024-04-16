@@ -6,9 +6,10 @@ yarn run dev
 npx prisma migrate dev
 npx prisma studio (안될때 sudo넣기)
 
-1.  const { pending } = useFormStatus(); 는 자식에서만 사용가능!! <form> 에서는 사용 불가능! 자식에서만!
-2.  input에는 name이 무조건 있어야한다!
-3.  input에 key값을 잘 사용해야 렌더될때 값이 남고 안남고가 유지된다
+0. route.ts 파일은 api가 오는 주소라고 생각하면됨
+1. const { pending } = useFormStatus(); 는 자식에서만 사용가능!! <form> 에서는 사용 불가능! 자식에서만!
+2. input에는 name이 무조건 있어야한다!
+3. input에 key값을 잘 사용해야 렌더될때 값이 남고 안남고가 유지된다
 
 ----- 데이터베이스 시작 ----------
 
@@ -29,4 +30,11 @@ npx prisma studio (안될때 sudo넣기)
 8. "use server"; 써주면 서버측에서 함수가 실행되게 해준다! 파일맨위에 써도되고(페이지전체가 서버관련) 함수안에써도됨!
 9. 미들웨어는 가볍게 움직여야한다.. 빨리빨리 실행되고 메인 response를 전달 해줘야하는데.. 여이에 미들웨어는 nodejs 런타임이 아닌 edge 런타임인데.. 이게뭐냐면 많이 경량화된 nodejs이다.. 그래서 간혹 라이브러리를 미들웨어에서 실행할려하거나 무거운 작업을 할려는경우 에러를 일으킬수있다..
 
-10.
+========== github ==========
+
+10. https://github.com/settings/applications/new 로 가서 new Oauth application을 열어줘야함
+11. github로그인 버튼을 누르면 /start get api를 부르게 된다.. 거기에 finalUrl을 통해 깃헙 페이지가서
+    승인을 눌러주면 깃헙설정에서 해놓은 redirect을 통해 complete 주소로 ?code=xxxxx 와 함께 api를 부르게 되고
+    compelete get api 에서 code를 통해 다시한번 깃험주소와함께 code를 넣어 fetch를 통해 access token을 가지게 되며 이 토큰을 다시 깃헙 api에 보내게되면 우리가 월하는 유저 정보를 가져올수있다 그러면 유저존재하거나 없거나에따라 데이터베이스에 저장한후 쿠키 저장후 사용가능! (두번연속하면 Cors 에러 가 나오는듯?)
+
+12.
