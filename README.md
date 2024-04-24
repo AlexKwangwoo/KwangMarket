@@ -37,4 +37,6 @@ npx prisma studio (안될때 sudo넣기)
     승인을 눌러주면 깃헙설정에서 해놓은 redirect을 통해 complete 주소로 ?code=xxxxx 와 함께 api를 부르게 되고
     compelete get api 에서 code를 통해 다시한번 깃험주소와함께 code를 넣어 fetch를 통해 access token을 가지게 되며 이 토큰을 다시 깃헙 api에 보내게되면 우리가 월하는 유저 정보를 가져올수있다 그러면 유저존재하거나 없거나에따라 데이터베이스에 저장한후 쿠키 저장후 사용가능! (두번연속하면 Cors 에러 가 나오는듯?)
 
-12.
+12. 괄호를 사용한 파일 이름은 URL에 전혀 영향을 주지 않는다 같은 레벨의 URL이라도 다른 레이어 가능! (auth) vs (tabs)
+
+13. loading.tsx 는 nextjs가 페이지 로딩때 부를것임!

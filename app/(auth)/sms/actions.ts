@@ -108,6 +108,11 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
     }
   } else {
     const result = await tokenSchema.spa(token); //safeParseAsync spa
+    // 현재이것의 문제는 번호를 입력후 토큰생성을 해서 보내줫는데
+    // 여기서는 토큰이 db에 존재하는지만 알아보고 유저아이디를 리턴할것임
+    // 즉 처음에 입력했던 번호한테서 나온 토큰인지 아직 알아보지 않았음.. 그래서 토큰에도 휴대폰을 저장하여
+    // 처음에 유저가 입력한 휴대폰 번호 및 입력한 토큰이
+    // 디비에 있는 토큰과 토큰안에 휴대폰번호랑 대조해서 같아야할것임
     if (!result.success) {
       return {
         token: true,
