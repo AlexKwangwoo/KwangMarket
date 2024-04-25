@@ -22,7 +22,27 @@ npx prisma studio (안될때 sudo넣기)
 
 6. getIronSession 를 이용해서 쿠키를 암호화해서 저장하고 암호화한걸 불러와서 다시 꺼내볼수도 있다!
 
-======== server component 만들려면
+## ======== server component 만들려면!!!!!!
+
+-- 만드는 이유는 이렇게 하면 post,get 라우터 파일을 따로 안만들어도 된다!
+
+ex) 밑에와 같은 통신이 일어날 필요없다! 바로 클라이언트 컴포넌트에서 처리해줌. 풀스택할때만!!
+
+<!-- import { redirect } from "next/navigation"; -->
+
+<!-- export function GET() {
+  const baseURL = "https://github.com/login/oauth/authorize";
+  const params = {
+    client_id: process.env.GITHUB_CLIENT_ID!,
+    scope: "read:user,user:email", //로그인 유저에게 뭘 원하는지
+    allow_signup: "true", // 깃헙 계정이 있는사람만 가입가능
+  };
+  //?client_id=~~~~&scope=~~~ 하는대신 밑에의 로직으로 구축가능!
+  const formattedParams = new URLSearchParams(params).toString();
+  const finalUrl = `${baseURL}?${formattedParams}`;
+  console.log("finalUrl", finalUrl);
+  return redirect(finalUrl);
+} -->
 
 7. onClick쓰면 항상 클라이언트가되는데 버튼한개만두고 form에 너호 action={함수} 하면 함수안에 "use server"
    쓰고 구축하면 서버 컴포넌트가 될수있다
@@ -40,3 +60,7 @@ npx prisma studio (안될때 sudo넣기)
 12. 괄호를 사용한 파일 이름은 URL에 전혀 영향을 주지 않는다 같은 레벨의 URL이라도 다른 레이어 가능! (auth) vs (tabs)
 
 13. loading.tsx 는 nextjs가 페이지 로딩때 부를것임!
+
+14. nextjs 는 이미지 최적하를하기에.. 서버에 과부하나 많은 비용이 들수있다.. 이를 허락하기위해서는 nextConfig에 넣어줘야함
+
+15.
