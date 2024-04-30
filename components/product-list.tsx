@@ -33,8 +33,8 @@ export default function ProductList({ initialProducts }: ProductListProps) {
           setIsLoading(true);
           const newProducts = await getMoreProducts(page + 1);
           if (newProducts.length !== 0) {
-            setPage((prev) => prev + 1);
             setProducts((prev) => [...prev, ...newProducts]);
+            setPage((prev) => prev + 1);
           } else {
             setIsLastPage(true);
           }
@@ -43,6 +43,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
       },
       {
         threshold: 1.0, //버튼이 100퍼센트 보일때까지 기다린다는뜻
+        // 마진 설정도 가능.. 화면안에서 어디까지 보이길원하는지
       }
     );
 
@@ -64,10 +65,11 @@ export default function ProductList({ initialProducts }: ProductListProps) {
       {!isLastPage ? (
         <span
           ref={trigger} //
-          style={{
-            marginTop: `${page + 1 * 900}vh`,
-          }}
-          className="mb-96 text-sm font-semibold bg-orange-500 w-fit mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
+          // style={{
+          //   marginTop: `${page + 1 * 900}vh`,
+          // }}
+          className="text-sm font-semibold bg-orange-500 w-fit mx-auto px-3 
+          py-2 rounded-md hover:opacity-90 active:scale-95"
         >
           {isLoading ? "로딩 중" : "Load more"}
         </span>

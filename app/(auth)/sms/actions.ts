@@ -55,9 +55,12 @@ async function getToken() {
 }
 
 export async function smsLogIn(prevState: ActionState, formData: FormData) {
+  console.log("come????");
   const phone = formData.get("phone");
   const token = formData.get("token");
   if (!prevState.token) {
+    // 처음에 여기로 올것임.. initialState에서 false엿기에..
+    // 그럼 처음으로 폰 번호를 받고 검증한뒤
     const result = phoneSchema.safeParse(phone);
     if (!result.success) {
       return {
@@ -65,6 +68,7 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
         error: result.error.flatten(),
       };
     } else {
+      // 맞다면 smsToken이 남아있을수도있으니 지우고
       await db.sMSToken.deleteMany({
         where: {
           user: {
@@ -72,7 +76,10 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
           },
         },
       });
+      //토큰을 하나 받아서
       const token = await getToken();
+      // 디비에 토큰과 유저 및 휴대폰 번호를 연결시켜준다
+      // 그런 유저가 없다면 입력한 폰을 가진 유저를 만들어준다!
       await db.sMSToken.create({
         data: {
           token,
@@ -102,6 +109,7 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
       //   to: process.env.MY_PHONE_NUMBER!,
       // });
 
+      // 보내주면 이게 그다음의 SMSLogin에서의 state가 될것임
       return {
         token: true,
       };
