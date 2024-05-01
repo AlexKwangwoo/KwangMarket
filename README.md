@@ -71,11 +71,44 @@ ex) 밑에와 같은 통신이 일어날 필요없다! 바로 클라이언트 �
 <!--  -->
 <!--  -->
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+---------- tab 안에 product와 루트안의 product를 나눈이유는 ----------
+tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의당근.. 탭바가...
+근데 tab을 나와 루트안에 다시 적어주면 layout이 공유되지 않는다
+
 ---------- Form action ----------
 
 15. SMSLogin() page.tsx 살펴볼것!!
 
+//////// 모르면 12.6 recap을 보셈! 정리잘해줌
 ------ route intercepting --------
 
 16. (..)proudcts/[id] 는 지금 있는 곳 부모의 레벨로 이동해서 그와 똑같은 products 라우터가 있으면 그걸 대신한다!
-    단 부모의 라우터에서 (..)product/[id] 로 이동했을때만 가능하다.. 즉 다른페이지에서 오거나 새로고침을 하면 월래 product/[id]가 나올것이다!
+    단 부모의 라우터에서 (..)product/[id] 로 이동했을때만 가능하다.. 예를들어 /home/(..)product/[id] 이면 home에서 링크를 눌러 product/[id]로 이동하면 인터셉트후 보여줄것이다.. 즉 월래보여줘야하는 /product/[id]는 안보여준다.. 하지만 새로고침을 하면(확실함 ) 월래 product/[id]가 나올것이다!
+
+17. (.)는 본인 위치의 같은 라우터를 인터셉터함 (..) 부모위치에 있는 같은 라우터를 인터셉트함
+
+18. (.)같은레벨 (..)한단계 부모레벨 (..)(..)두단계 부모레벨 참고로 (tabs) / (auth)이건 그룹이지 다음레벨이 아님!
+
+- Parallel Routes
+
+19. 이걸 통해서 한페이지 한에 월래 나와야하는건 흐리게 뒤에 보이고, intercept 한 페이지가 위에 보일것이다
+20. 하지만 404가 뜬다.. 루트가 어떻게 되는지 중요
+    같은레벨에 @props명 다음안에 페이지가 있어야한다
+    즉 내가 /products 주소로 갔을떄 parallel Routes를 보고싶다면
+    파일 명도 ex) /@potato/products/parallelPage.tsx 이렇게 폴더를 만들면(최상단 layout에서 props로 potato를 가져올수있다) /products주소갔을때 두개가 겹쳐보일것임
+    하지만 많은 url에 저렇게 해줄수없으므로 매치가되는게 없을떄 default.tsx(파일명 동일해야함)을 @potato안에 만들어주면
+    매치가 안될때 default.tsx파일을 보여줄것임! 즉 이걸 해주면 404가 없어지고 null만 보여줄것임!
+    ex) @potato 안에 page.tsx만들면 즉 /(루트) 에서만 페이지 파일이 보일것임
+    ex) app/page.js === app/@children/page.js
+
+    - home에 있는 layout에서 props 를 받는거임.. 그 부모안에있는 layout!
+      레이아웃에
+      {children}
+      {potato} ->props로...
+      가 있다치면... @potato 파일로 가서 home 폴더와 page.tsx 를 찾을것임!... 근데 업잖아! 그래서 404내기에 default를 설정해서 null로 보여주고
+      대신 /home/product/1 이오면 @potato/products/[id] 가 보여질수있는거임.. (이건 파일안에 있기에)
+      설명이 좀 힘듬.. recap 보면 나아질거임 시간걸려도!
+
+21. 즉!! @potato가 계속 trigger되다..default.tsx가 봔환되다 맞는 url이 와서 {potato를 보여주면} 그떄야
+    (..)product 페이지가 intercept를 해서 가로체서 나올것임.. home/page 위에!
