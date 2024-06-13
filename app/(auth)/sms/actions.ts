@@ -68,7 +68,7 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
         error: result.error.flatten(),
       };
     } else {
-      // 맞다면 smsToken이 남아있을수도있으니 지우고
+      // 맞다면 smsToken이 남아있을수도있으니 지우고 (잚못입력한 경우.. 처음이라해도 지우고 들어감)
       await db.sMSToken.deleteMany({
         where: {
           user: {
@@ -84,7 +84,7 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
         data: {
           token,
           user: {
-            //token을 만드는데 유저랑 연결할것임
+            //token을 만드는데 유저랑 연결할것임  phone: result.data, 을 가지고있는 유저중 없으면 create함
             connectOrCreate: {
               where: {
                 phone: result.data,

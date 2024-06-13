@@ -1,4 +1,4 @@
-"use server";
+"use server"; // 이렇게 함으로써 patch post 이런걸 따로 만들어서 할필요없다!
 import bcrypt from "bcrypt";
 import {
   PASSWORD_MIN_LENGTH,
@@ -59,9 +59,9 @@ export async function logIn(prevState: any, formData: FormData) {
     email: formData.get("email"),
     password: formData.get("password"),
   };
-  const result = await formSchema.spa(data);
+  const result = await formSchema.spa(data); //SafeParse = spa
   if (!result.success) {
-    console.log(result.error.flatten());
+    console.log(result.error.flatten()); //flatten 에러를 이쁘게 만들어줌
     return result.error.flatten();
   } else {
     const user = await db.user.findUnique({
@@ -80,7 +80,7 @@ export async function logIn(prevState: any, formData: FormData) {
     if (ok) {
       const session = await getSession();
       session.id = user!.id;
-      await session.save();
+      await session.save(); //비밀번호와 함친 암호글자로 web 브라우저 cookie에 저장됨!
       redirect("/profile");
     } else {
       return {

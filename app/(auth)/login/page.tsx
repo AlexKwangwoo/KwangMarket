@@ -10,13 +10,12 @@ import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
 
 export default function LogIn() {
   //state 는 handleForm의 결과가 될것임
-  //state 는 handleForm의 결과가 될것임
   //  handleForm뒤의 null은 초기값이다!
   const [state, dispatch] = useFormState(logIn, null);
   console.log("state", state);
 
   // async function handleForm(formData: FormData) {
-  //   "use server";
+  //   "use server"; // -> 이렇게 함으로써 patch post 이런걸 따로 만들어서 할필요없다!
   //   await new Promise((resolve) => setTimeout(resolve, 2000));
   //   console.log("logged in!");
   //   // console.log(formData.get("email"), formData.get("password"));
