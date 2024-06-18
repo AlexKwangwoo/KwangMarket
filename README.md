@@ -117,3 +117,18 @@ tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의�
 
 21. 즉!! @potato가 계속 trigger되다..default.tsx가 봔환되다 맞는 url이 와서 {potato를 보여주면} 그떄야
     (..)product 페이지가 intercept를 해서 가로체서 나올것임.. home/page 위에!
+
+22. 캐쉬!! fetch를사용해 주소로 데이터를 주고받으면 자동으로 캐쉬가 될것임! 단! get이고 cookies나 header를 쓰지않으면
+
+23. 보는 사람마다 달라지면 다이나믹 / 안달라지면 스테틱.. 그럼 상품 리스트 페이지는.. 보는사람이 달라도 같은 페이지를 리턴해야 하기에 nextjs는 처음에 스테틱이라 생각하고 행동할것임
+
+24. 'auto' (default): The default option to cache as much as possible without preventing any components from opting into dynamic behavior. 가능한 많이 캐쉬
+
+'force-dynamic': Force dynamic rendering, which will result in routes being rendered for each user at request time. This option is equivalent to getServerSideProps() in the pages directory. 유저가 방문할떄마다 html 페이지를 만들것임!
+
+'error': Force static rendering and cache the data of a layout or page by causing an error if any components use dynamic functions or uncached data. This option is equivalent to:
+
+25. 캐쉬 조합해서 해보자.. export const dynamic = "force-dynamic"; 사용 + nextCache 사용!
+    즉 getCachedProducts 를 사용하면 force-dynamic 서도 캐쉬가있으니 캐쉬를 활용한다!
+
+\*\* 26. 쿠키세션(서버)쪽에서 사용하면 미리 프리랜더가 안된다!!
