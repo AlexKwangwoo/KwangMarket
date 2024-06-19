@@ -122,6 +122,8 @@ tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의�
 
 23. 보는 사람마다 달라지면 다이나믹 / 안달라지면 스테틱.. 그럼 상품 리스트 페이지는.. 보는사람이 달라도 같은 페이지를 리턴해야 하기에 nextjs는 처음에 스테틱이라 생각하고 행동할것임
 
+<!-- https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate -->
+
 24. 'auto' (default): The default option to cache as much as possible without preventing any components from opting into dynamic behavior. 가능한 많이 캐쉬
 
 'force-dynamic': Force dynamic rendering, which will result in routes being rendered for each user at request time. This option is equivalent to getServerSideProps() in the pages directory. 유저가 방문할떄마다 html 페이지를 만들것임!
@@ -131,4 +133,10 @@ tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의�
 25. 캐쉬 조합해서 해보자.. export const dynamic = "force-dynamic"; 사용 + nextCache 사용!
     즉 getCachedProducts 를 사용하면 force-dynamic 서도 캐쉬가있으니 캐쉬를 활용한다!
 
-\*\* 26. 쿠키세션(서버)쪽에서 사용하면 미리 프리랜더가 안된다!!
+<!-- important!! -->
+
+26. 쿠키세션(서버)쪽에서 사용하면 미리 프리랜더가 안된다!! + nextCache(getProduct, ["product-detail"], {
+    tags: ["product-detail-tag"], //테그는 여러개 가능.. 한개만 속해도 업데이트 될것임!
+    }); 에서 product-detail은 데이터가 캐쉬되는 key 이름이고 product-detail-tag는 revalidateTag로 저키에 캐쉬 업데이트 가능! 또는 revalidate : 60 이렇게 가능! 또는 revalidatePath로 그안에있는 모든 key 업데이트 가능!(사용하고있다면)
+
+27. composit id 를 이용해서 userid + postid 를 이용해 좋아요 id를 만들것임.. 이렇게하면 한사람당 한포스트에 한개만 가질수있음!

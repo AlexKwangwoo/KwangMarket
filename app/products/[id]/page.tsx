@@ -153,6 +153,8 @@ export default async function ProductDetail({
 }
 
 // 빌드될때 미리 생성된 페이지들만 찾을수있을것임.. 새로 만들면 예를들어 아이디가 10이 추가됬다 쳐도 10으로 이동하면 404뜰것임!
+// 기본설정은 true임.. 유저가 10으로 이동하면 한번 디비에서 불러 데이터를 받은뒤 html로 자동으로 생성한다.. 그후 다른유저가
+// 다시 제품 id 10에 들어오면 디비를 부르지 않고 바로 보여줄수있다
 // export const dynamicParams = false;
 
 export async function generateStaticParams() {
