@@ -85,5 +85,5 @@ model Like {
   userId     Int
   postId     Int
 
-  @@id(name: "id", [userId, postId]) //이렇게도 아이디 만들기 가능
+  @@id(name: "id", [userId, postId]) //이렇게도 아이디 만들기 가능 유저아이디 + 포스트아이디 getIsLiked 통해서 어떻게 get하는지 확인해보셈
 }
