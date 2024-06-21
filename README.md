@@ -142,3 +142,5 @@ tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의�
 27. composit id 를 이용해서 userid + postid 를 이용해 좋아요 id를 만들것임.. 이렇게하면 한사람당 한포스트에 한개만 가질수있음!
 
 28. 서버렌더링에서 유저랑 소통하고싶으면 form의 action을 사용! 클라이언트렌더링은 onClick그냥 사용하면됨! like dislike 참고!
+
+29. select: { id: true }, 리턴할때 id만 리턴한다는 뜻임!
