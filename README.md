@@ -143,4 +143,4 @@ tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의�
 
 28. 서버렌더링에서 유저랑 소통하고싶으면 form의 action을 사용! 클라이언트렌더링은 onClick그냥 사용하면됨! like dislike 참고!
 
-29. select: { id: true }, 리턴할때 id만 리턴한다는 뜻임!
+29. select: { id: true }, 리턴할때 id만 리턴한다는 뜻임
