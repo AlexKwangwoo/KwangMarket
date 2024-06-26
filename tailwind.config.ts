@@ -11,6 +11,15 @@ const config: Config = {
       borderRadius: {
         Kwang: "11.12px",
       },
+
+      fontFamily: {
+        roboto: "var(--roboto-text)",
+        rubick: "var(--rubick-text)",
+        metallica: "var(--metallica-text)",
+      },
+      margin: {
+        tomato: "120px",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

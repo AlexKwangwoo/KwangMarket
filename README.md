@@ -144,3 +144,23 @@ tab안에 layout이 공유된다.. 밑에 홈 동네생활 체팅 쇼핑 나의�
 28. 서버렌더링에서 유저랑 소통하고싶으면 form의 action을 사용! 클라이언트렌더링은 onClick그냥 사용하면됨! like dislike 참고!
 
 29. select: { id: true }, 리턴할때 id만 리턴한다는 뜻임
+
+30. font 조정은 app밑에있는 layout과 tailwind.config에서 변수명으로 정의후 일반 className에서 사용가능! 반드시 body에 등록시켜야한다 ${roboto.variable} ${rubick.variable} ${metallica.variable} 이런식으로
+
+31. \_ 언더스코어만 붙여주면 주소에서 무시하게 된다! \는 무시!!
+
+32. 여러게의 파라미터를 주소안에 넣고싶다면 [...potato] 이런식으로 하면된다! -> 어레이로 받을꺼임
+33. [[...potato]] 이렇게하면 slug가 있어도보이고 없어도 보일것임!
+
+34. const nextConfig = {
+    logging: {
+    fetches: {
+    fullUrl: true,
+    },
+    },
+    해주면 캐싱이 되는걸 로그에서 볼수있다 -> cache: HIT 이면 불러왔다는 거임!
+
+35. experimental_taintObjectReference
+    experimental_taintUniqueValue 를 사용하여 클라이언트 단으로 보내면 안되는 값들 또는 오브젝트를 감지하여 오류 발생가능!
+
+36. "server-only" 파일에 저문구가 있으면 클라이언트단에서 절대로 import못한다!
